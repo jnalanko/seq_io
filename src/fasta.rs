@@ -718,7 +718,7 @@ pub struct RefRecord<'a> {
 
 impl<'a> Record for RefRecord<'a> {
     #[inline]
-    fn head(&self) -> &[u8] {
+    fn head(&self) -> &'a [u8] {
         trim_cr(&self.buffer[self.buf_pos.start + 1..*self.buf_pos.seq_pos.first().unwrap()])
     }
 
@@ -729,7 +729,7 @@ impl<'a> Record for RefRecord<'a> {
     /// breaks, or use [`full_seq()`](struct.RefRecord.html#method.full_seq)
     /// to access the whole sequence at once.
     #[inline]
-    fn seq(&self) -> &[u8] {
+    fn seq(&self) -> &'a [u8] {
         if self.buf_pos.seq_pos.len() > 1 {
             let start = *self.buf_pos.seq_pos.first().unwrap() + 1;
             let end = *self.buf_pos.seq_pos.last().unwrap();

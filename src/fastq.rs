@@ -808,17 +808,17 @@ pub struct RefRecord<'a> {
 
 impl<'a> Record for RefRecord<'a> {
     #[inline]
-    fn head(&self) -> &[u8] {
+    fn head(&self) -> &'a [u8] {
         self.buf_pos.head(self.buffer)
     }
 
     #[inline]
-    fn seq(&self) -> &[u8] {
+    fn seq(&self) -> &'a [u8] {
         self.buf_pos.seq(self.buffer)
     }
 
     #[inline]
-    fn qual(&self) -> &[u8] {
+    fn qual(&self) -> &'a [u8] {
         self.buf_pos.qual(self.buffer)
     }
 }
